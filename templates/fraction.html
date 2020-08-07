@@ -1,0 +1,39 @@
+<html><head><title>成绩分段</title></head>
+|<a href="http://127.0.0.1:8000/insert">添加学生</a>
+|<a href="http://127.0.0.1:8000/questu">查询学生</a>
+|<a href="http://127.0.0.1:8000/sinsort">单科排名</a>
+|<a href="http://127.0.0.1:8000/list">学生管理操作</a>|
+<div align="center">
+    <form method="post">
+        {% csrf_token %}
+        <h3>请选择要查看的总成绩分数段</h3>
+        <select name="score">
+            <option value="1">600~650</option>
+            <option value="2">500~600</option>
+            <option value="3">400~500</option>
+            <option value="4">300~400</option>
+            <option value="5">300以下</option>
+        </select>
+        <td><input type="submit" value="查询"> </td>
+    </form>
+</div>
+<hr />
+<h3 style="text-align: center">按选中分数段排序的输出结果</h3>
+<table border=1 align="center">
+<tr> <th>学号</th><th>姓名</th><th>语文成绩</th><th>数学成绩</th><th>英语成绩</th><th>物理成绩</th><th>化学成绩</th><th>总成绩</th>
+    </tr>
+</tr>
+{% for student in stulist %}
+<tr>`
+<td>{{ student.num }}</td>
+<td>{{ student.name }}</td>
+<td>{{ student.chinese }}</td>
+<td>{{ student.math }}</td>
+<td>{{ student.english }}</td>
+<td>{{ student.physics }}</td>
+<td>{{ student.chemistry }}</td>
+<td>{{ student.allscore }}</td>
+</tr>
+{% endfor %}
+</table>
+</html>

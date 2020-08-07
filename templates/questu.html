@@ -1,0 +1,32 @@
+<html><head><title>查询学生</title></head>
+|<a href="http://127.0.0.1:8000/insert">添加学生</a>
+|<a href="http://127.0.0.1:8000/sinsort">单科排名</a>
+|<a href="http://127.0.0.1:8000/fraction">成绩分段</a>
+|<a href="http://127.0.0.1:8000/list">学生管理操作</a>|
+<div align="center">
+    <form method="post">
+        {% csrf_token %}
+        <h3>可使用姓名或学号（任选其一）检索学生成绩</h3>
+        <input type="text" name="name" placeholder="请输入姓名"><input type="submit" value="搜索">
+        <input type="text" name="num" placeholder="请输入学号"><input type="submit" value="搜索">
+    </form>
+</div>
+<hr />
+<h3 style="text-align: center">查询结果</h3>
+<table border=1 align="center">
+<tr> <th>学号</th><th>姓名</th><th>语文成绩</th><th>数学成绩</th><th>英语成绩</th><th>物理成绩</th><th>化学成绩</th><th>总成绩</th>
+</tr>
+{% for student in student_list %}
+<tr>
+<td>{{ student.num }}</td>
+<td>{{ student.name }}</td>
+<td>{{ student.chinese }}</td>
+<td>{{ student.math }}</td>
+<td>{{ student.english }}</td>
+<td>{{ student.physics }}</td>
+<td>{{ student.chemistry }}</td>
+<td>{{ student.allscore }}</td>
+</tr>
+{% endfor %}
+</table>
+</html>

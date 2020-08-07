@@ -1,0 +1,56 @@
+<html><head><title>单科排名</title></head>
+|<a href="http://127.0.0.1:8000/insert">添加学生</a>
+|<a href="http://127.0.0.1:8000/questu">查询学生</a>
+|<a href="http://127.0.0.1:8000/fraction">成绩分段</a>
+|<a href="http://127.0.0.1:8000/list">学生管理操作</a>|
+<div align="center">
+    <form method="post">
+        {% csrf_token %}
+        <h3>请选择要排序的学生单科成绩</h3>
+        <select name="proj">
+            <option value="1">语文</option>
+            <option value="2">数学</option>
+            <option value="3">英语</option>
+            <option value="4">物理</option>
+            <option value="5">化学</option>
+            <option value="6">总成绩</option>
+        </select>
+        <td><input type="submit" value="查询"> </td>
+    </form>
+</div>
+<hr />
+<h3 style="text-align: center">按选中科目排序的输出结果</h3>
+<table border=1 align="center">
+<tr> <th>学号</th><th>姓名</th><th>成绩</th>
+</tr>
+{% for student in stulist %}
+<tr>
+{% if proj == '1' %}
+    <td>{{ student.num }}</td>
+    <td>{{ student.name }}</td>
+    <td>{{ student.chinese }}</td>
+{% elif proj == '2' %}
+    <td>{{ student.num }}</td>
+    <td>{{ student.name }}</td>
+    <td>{{ student.math }}</td>
+{% elif proj == '3' %}
+    <td>{{ student.num }}</td>
+    <td>{{ student.name }}</td>
+    <td>{{ student.english }}</td>
+{% elif proj == '4' %}
+    <td>{{ student.num }}</td>
+    <td>{{ student.name }}</td>
+    <td>{{ student.physics }}</td>
+{% elif proj == '5' %}
+    <td>{{ student.num }}</td>
+    <td>{{ student.name }}</td>
+    <td>{{ student.chemistry }}</td>
+{% elif proj == '6' %}
+    <td>{{ student.num }}</td>
+    <td>{{ student.name }}</td>
+    <td>{{ student.allscore }}</td>
+{% endif %}
+</tr>
+{% endfor %}
+</table>
+</html>
